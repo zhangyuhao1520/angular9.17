@@ -1,0 +1,136 @@
+angular.js
+     什么是angularJS:AngulaJs使得开发现代的单一页面应用程序变得更加容易。
+		     	     把应用程序数据绑定到HTML元素。
+			     可以克隆和重复使用HTML元素
+			     可以隐藏和显示HTML元素
+			     可以在HTML元素'背后'添加代码	
+			     支持输入验证
+	   扩展了html
+ng-app=""  :指令定义一个AngularJS应用程序; 指令告诉AngulaJS <div>元素是AngularJS应用的所有者
+ng-model   :把元素的值绑定到应用程序;	   把输入的区域值绑定到应用程序的变量上
+ng-bing    :把应用程序的数据绑定到html视图 把应用程序变量绑定到某个段落的innerHTML
+    注意:如果你移除了ng-app指令，html会直接把表达式显示出来不会去计算;
+	 HTML5允许自扩展属性，以data-开头  Aagular属性以ng-开头，可以用data-ng-来让网页对html5有效；
+	例如:
+<div ng-app="">
+<p>名字:<input type="text" ng-model="name"></p>
+<h1>HWLLO{{name}}</h1>
+<h1 ng-bind="name"></h1>
+</div>
+	  指令
+nng-init="" :指令初始化AangularJS应用程序变量
+	例如:
+<div ng-app="" ng-init="feisName='杨'">
+<p>姓氏为<span ng-bind="feisName"></span></p>
+</div>
+	   表达式
+AngularJS表达式写在大括号内{{expression}} ；
+AngularJS表达式把数据绑定到HTML，这与ng-bind指令有异曲同工之妙
+AngularJS将在表达式书写的位置“输出”数据
+AngularJS表达式很像javascript表达式：他们可以包含文字，运算符和变量；
+实例:{{5+5}}或{{firstName+""+lastName}}
+<div ng-app=""><p>我的第一个表达式：{{5+5}}</p></div>
+	    应用
+Angular模块（Module）定义了AngularJS应用；
+Angular控制器（Controller）用于控制AnglarJS应用；
+ng-app指令定义了应用，ng-controller定义了控制器
+<div ng-app="myApp" ng-controller="myCtrl">
+	名：<input type="text" ng-model="fast1"><br/>
+	姓：<input type="text" ng-model="fast2"><br/>
+	姓名:{{fast1+“”+fast2}}
+</div>
+<script>
+	var app=angular.module("myApp",[]);          ：模块的定义
+	app.controller("myApp",function($scope){     ：控制器控制应用
+	$scope.fast1="yang";
+	$scope.fast2="shiwei"
+})
+</script>
+              AngularJS数字
+<div ng-app="" ng-init="jiaqian=5:shu=1">
+<p>总价<span ng-bind="jiaqian*shu"></span></p>
+<p>总价:{{jiaqian+shu}}</p>
+<p>总价:{{jiaqian*shu}}</p>
+</div>
+	     AngularJS字符串
+<div ng-app="" ng-init="fanst1='yang';fanst='shiwei'">
+<p>姓名:{{fanst1+""+fanst}}</p>
+</div>
+	   AngularJS对象
+<div ng-app="" ng-init="person={frstName:"yang",lastName:"shiwei"}">
+<p>姓为{{person.frstName}}</p>
+</div>
+	   AngularJS数组
+<div ng-app="" ng-init="points=[5,6,6,9]">
+<p>第二个值{{points[1]}}</p>
+</div>
+AngularJS表达式和javascript表达式
+类似表达式的（可以包含字母、操作符、变量）；
+不同（Angular表达式可以写在HTML中；表达式不支持条件判断，循环及异常；表达式支持过滤0吗）
+	   AngularJS指令
+1.指令是扩展HTML属性，带有前缀ng-;
+2.ng-app初始化angularJS应用程序
+3.ng-init初始化应用程序数据
+4.ng-model把元素值绑定应用程序
+5.一个网页可以包含多个运行在不同元素的AngularJS应用程序；
+<div data-ng-app="" data-ng-init="jia=1;shu=5">
+<h2>价格技算</h2>
+数量：<input type="text" ng-model="shu">
+价格：<input type="text" ng-model="jia">
+<p><b>总价：</b>{{jia*shu}}</p>
+</div>
+		重复HTML元素  ng-repeat="x in name"
+<div ng-app="" ng-init="name=["1","5","6"]">
+<p>使用ng-repeat来循环数组</p>
+<ul><li ng-repeat="x in name">{{x}}</li></ul>
+</div>
+<div ng-app="" ng-init="name=[{name:'1',ccc:'2'},{name:'1',ccc:'2'},{name:'1',ccc:'2'}]">
+<p>使用ng-repeat来循环对象</p>
+<ul><li ng-repeat="x in name">{{x.name+','x.ccc}}</li></ul>
+</div>
+AngularJS完美的支持数据库格式CRUD应用程序；
+ng-app指令 指定AngularJS应用程序的根元素；网页加载时会自动引导（自动初始化）应用程序；可以给ng-app="加值"链接到代码模块
+ng-init指令 通常之下不使用 ng-init，可以使用代码块和控制器来代替他；
+ng-model指令 可以提供数据类型验证，为应用数据提供状态，为html提供css类，绑定html元素到html表单；
+ng-erpeat指令 对于集合中的数组每项都会克隆一次html元素；
+创建自定义指令：使用.dirwctive函数来创建，要调用指令需要在html元素上添加自定义指令名，用驼峰来命名指令
+E:作为元素名A:作为属性C:作为类名M:作为注释；restrct默认的值为EA；
+<body ng-app="myApp">
+<runoob-directive></runoob-directive>  通过标签来调用指令
+<div class="runoob-directive"></div>   通过类名来调用指令
+<div runoob-directive></div>	       通过属性来调用指令
+<!--directive:runoob-directive-->      通过标注释来调用指令
+<script>
+var app = angular.module("myApp", []);
+app.directive("runoobDirective", function() {
+    return {
+	restrict:"EACM",
+	replace:true,
+        template : "<h1>自定义指令!</h1>"
+    };
+});
+</script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
